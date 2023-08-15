@@ -1,0 +1,27 @@
+name: GraphQL Inspector
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your branch name
+
+jobs:
+  graphql-inspector:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # Use the version you need
+
+      - name: Install Dependencies
+        working-directory: ./server  # Set working directory to server
+        run: npm install
+
+      - name: Run GraphQL Inspector
+        working-directory: ./server  # Set working directory to server
+        run: npx graphql-inspector
